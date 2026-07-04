@@ -1,24 +1,34 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Nav } from "@/components/cs/Nav";
+import { Hero } from "@/components/cs/Hero";
+import { ConnectorCards } from "@/components/cs/Connectors";
+import { WhyRag } from "@/components/cs/WhyRag";
+import { Pipeline } from "@/components/cs/Pipeline";
+import { Dashboard } from "@/components/cs/Dashboard";
+import { QueryDemo } from "@/components/cs/QueryDemo";
+import { Architecture } from "@/components/cs/Architecture";
+import { ResumeValue } from "@/components/cs/ResumeValue";
+import { Footer } from "@/components/cs/Footer";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-dvh bg-background text-foreground">
+      <Nav />
+      <main>
+        <Hero />
+        <ConnectorCards />
+        <WhyRag />
+        <Pipeline />
+        <Dashboard />
+        <QueryDemo />
+        <Architecture />
+        <ResumeValue />
+      </main>
+      <Footer />
     </div>
   );
 }
