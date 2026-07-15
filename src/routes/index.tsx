@@ -22,10 +22,10 @@ function Index() {
       <div className="flex min-w-0 flex-1 flex-col">
         <TopBar />
         <main className="min-w-0 flex-1">
-          <div id="overview"><Hero /></div>
-          <div id="connectors"><ConnectorCards /></div>
+          <Hero />
+          <section id="connectors"><ConnectorCards /></section>
           <WhyRag />
-          <div id="pipeline"><Pipeline /></div>
+          <section id="pipeline"><Pipeline /></section>
           <Dashboard />
           <QueryDemo />
           <Architecture />
