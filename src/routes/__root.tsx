@@ -74,7 +74,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
-const themeInit = `(() => { try { const t = localStorage.getItem('cs-theme'); const d = t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches; if (d) document.documentElement.classList.add('dark'); } catch(e){} })();`;
+const themeInit = `(() => { document.documentElement.classList.add('dark'); })();`;
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
@@ -88,21 +88,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "A unified semantic layer over Slack, Jira, Google Drive, and Notion. Hybrid retrieval, parent-child chunking, entity graphs, and continuous evaluation.",
       },
       { name: "author", content: "Context Synthesizer" },
-      {
-        property: "og:title",
-        content: "Context Synthesizer — Enterprise context pipeline for LLM answers",
-      },
-      {
-        property: "og:description",
-        content:
-          "Hybrid retrieval, entity graphs, and continuous evaluation across Slack, Jira, Drive, and Notion.",
-      },
+      { property: "og:title", content: "Context Synthesizer — Enterprise context pipeline for LLM answers" },
+      { property: "og:description", content: "Hybrid retrieval, entity graphs, and continuous evaluation across Slack, Jira, Drive, and Notion." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:title", content: "Context Synthesizer — Enterprise context pipeline for LLM answers" },
       { name: "twitter:title", content: "Context Synthesizer — Enterprise context pipeline for LLM answers" },
-      { name: "description", content: "A unified semantic layer over Slack, Jira, Google Drive, and Notion. Hybrid retrieval, parent-child chunking, entity graphs, and continuous evaluation." },
-      { property: "og:description", content: "A unified semantic layer over Slack, Jira, Google Drive, and Notion. Hybrid retrieval, parent-child chunking, entity graphs, and continuous evaluation." },
       { name: "twitter:description", content: "A unified semantic layer over Slack, Jira, Google Drive, and Notion. Hybrid retrieval, parent-child chunking, entity graphs, and continuous evaluation." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f762e6b7-24ac-414f-9224-4dd3f1ea5f15/id-preview-b1e875bd--a97273df-3633-49dc-8fab-d5d67aeff33c.lovable.app-1783185394747.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f762e6b7-24ac-414f-9224-4dd3f1ea5f15/id-preview-b1e875bd--a97273df-3633-49dc-8fab-d5d67aeff33c.lovable.app-1783185394747.png" },
@@ -111,14 +101,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: appCss },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      {
-        rel: "preconnect",
-        href: "https://fonts.gstatic.com",
-        crossOrigin: "anonymous",
-      },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap",
       },
     ],
     scripts: [{ children: themeInit }],
