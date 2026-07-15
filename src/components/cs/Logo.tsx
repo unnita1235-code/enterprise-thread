@@ -1,36 +1,17 @@
-export function Logo({ className = "" }: { className?: string }) {
+export function Logo() {
   return (
-    <span className={`inline-flex items-center gap-2 ${className}`}>
-      <svg
-        width="22"
-        height="22"
-        viewBox="0 0 24 24"
-        fill="none"
-        aria-hidden="true"
-        className="text-foreground"
-      >
-        <rect
-          x="1.5"
-          y="1.5"
-          width="21"
-          height="21"
-          rx="4"
-          stroke="currentColor"
-          strokeWidth="1.5"
-        />
-        <circle cx="7" cy="7" r="1.6" fill="currentColor" />
-        <circle cx="17" cy="7" r="1.6" fill="var(--teal)" />
-        <circle cx="7" cy="17" r="1.6" fill="var(--teal)" />
-        <circle cx="17" cy="17" r="1.6" fill="currentColor" />
-        <path
-          d="M7 7 L17 17 M17 7 L7 17"
-          stroke="currentColor"
-          strokeWidth="1.2"
-          strokeOpacity="0.35"
-        />
-        <path d="M7 7 L17 7" stroke="var(--teal)" strokeWidth="1.4" />
-      </svg>
-      <span className="font-semibold tracking-tight">Context Synthesizer</span>
-    </span>
+    <div className="flex items-center gap-3">
+      <div className="relative grid h-9 w-9 place-items-center rounded-sm bg-teal">
+        <svg viewBox="0 0 24 24" className="h-5 w-5 text-teal-foreground" fill="none" stroke="currentColor" strokeWidth="2.2">
+          <path d="M4 6h6M4 12h6M4 18h6" />
+          <path d="M14 6l6 6-6 6" />
+        </svg>
+        <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-teal ring-2 ring-background signal-pulse" />
+      </div>
+      <div className="min-w-0 leading-tight">
+        <p className="font-display text-sm font-bold uppercase tracking-tight text-foreground">Context</p>
+        <p className="font-display text-sm font-bold uppercase tracking-tight text-teal">Synthesizer</p>
+      </div>
+    </div>
   );
 }
