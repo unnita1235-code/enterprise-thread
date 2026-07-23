@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://enterprise-thread.lovable.app/sitemap.xml
