@@ -12,6 +12,9 @@ import { ResumeValue } from "@/components/cs/ResumeValue";
 import { Footer } from "@/components/cs/Footer";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    links: [{ rel: "canonical", href: "https://enterprise-thread.lovable.app/" }],
+  }),
   component: Index,
 });
 

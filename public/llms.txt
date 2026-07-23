@@ -1,0 +1,13 @@
+# Context Synthesizer
+
+> Enterprise context pipeline that unifies Slack, Jira, Google Drive, and Notion into a single semantic layer for grounded LLM question answering.
+
+Context Synthesizer is a portfolio demonstration of an enterprise RAG system: hybrid retrieval (BM25 + vector), parent-child chunking, entity graphs, reranking, and continuous evaluation of faithfulness, recall, and groundedness. The single-page site presents the architecture, an operator dashboard, and an interactive query demo backed by static demo data.
+
+## Pages
+
+- [Overview](/): Product overview, connector cards, pipeline, dashboard, query demo, architecture, and portfolio value
+
+## Optional
+
+- [Sitemap](/sitemap.xml): Machine-readable list of public routes
