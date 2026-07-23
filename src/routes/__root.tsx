@@ -109,7 +109,34 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap",
       },
     ],
-    scripts: [{ children: themeInit }],
+    scripts: [
+      { children: themeInit },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Organization",
+              "@id": "https://enterprise-thread.lovable.app/#organization",
+              name: "Context Synthesizer",
+              url: "https://enterprise-thread.lovable.app/",
+              description:
+                "Enterprise context pipeline that unifies Slack, Jira, Google Drive, and Notion into a single semantic layer for grounded LLM question answering.",
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://enterprise-thread.lovable.app/#website",
+              url: "https://enterprise-thread.lovable.app/",
+              name: "Context Synthesizer",
+              publisher: { "@id": "https://enterprise-thread.lovable.app/#organization" },
+              description:
+                "Hybrid retrieval, parent-child chunking, entity graphs, and continuous evaluation across Slack, Jira, Drive, and Notion.",
+            },
+          ],
+        }),
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
