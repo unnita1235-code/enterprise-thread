@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
 
 function useClock() {
-  const [t, setT] = useState(() => new Date());
+  const [time, setTime] = useState<string | null>(null);
   useEffect(() => {
-    const id = setInterval(() => setT(new Date()), 1000);
+    const tick = () =>
+      setTime(new Date().toISOString().slice(11, 19) + "Z");
+    tick();
+    const id = setInterval(tick, 1000);
     return () => clearInterval(id);
   }, []);
-  return t.toISOString().slice(11, 19) + "Z";
+  return time;
 }
 
 export function TopBar({ onMenu }: { onMenu?: () => void }) {
@@ -35,7 +38,7 @@ export function TopBar({ onMenu }: { onMenu?: () => void }) {
           <span className="font-mono text-[11px] uppercase tracking-widest text-teal">Live context sync</span>
         </div>
         <div className="hidden font-mono text-[11px] uppercase tracking-widest text-muted-foreground lg:block">
-          us-east-1 · {time}
+          us-east-1 · {time ?? "--:--:--Z"}
         </div>
       </div>
     </header>
