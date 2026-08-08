@@ -204,3 +204,15 @@ https://github.com/unnita1235-code/enterprise-thread
 ## License
 
 MIT License
+
+---
+
+## Environment Variables
+
+This project requires **no secrets**; the production build works with zero environment variables set.
+
+| Variable | Required | Default | Purpose |
+| --- | --- | --- | --- |
+| `VITE_SITE_URL` | No | `https://enterprise-thread.lovable.app` | Canonical origin for `canonical`, `og:url`, JSON-LD, and `/sitemap.xml` |
+
+See [`.env.example`](./.env.example) and [`DEPLOYMENT.md`](./DEPLOYMENT.md) for Vercel setup steps.
