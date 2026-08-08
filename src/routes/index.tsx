@@ -10,13 +10,15 @@ import { QueryDemo } from "@/components/cs/QueryDemo";
 import { Architecture } from "@/components/cs/Architecture";
 import { ResumeValue } from "@/components/cs/ResumeValue";
 import { Footer } from "@/components/cs/Footer";
+import { absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
-    links: [{ rel: "canonical", href: "https://enterprise-thread.lovable.app/" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/") }],
   }),
   component: Index,
 });
+
 
 function Index() {
   return (

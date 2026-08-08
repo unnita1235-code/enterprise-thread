@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SITE_URL, absoluteUrl } from "../lib/site";
 
 function NotFoundComponent() {
   return (
@@ -91,7 +92,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Context Synthesizer — Enterprise context pipeline for LLMs" },
       { property: "og:description", content: "Hybrid retrieval, entity graphs, and continuous evaluation across Slack, Jira, Drive, and Notion." },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://enterprise-thread.lovable.app/" },
+      { property: "og:url", content: absoluteUrl("/") },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Context Synthesizer — Enterprise context pipeline for LLMs" },
       { name: "twitter:description", content: "A unified semantic layer over Slack, Jira, Google Drive, and Notion. Hybrid retrieval, parent-child chunking, entity graphs, and continuous evaluation." },
@@ -118,18 +119,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@graph": [
             {
               "@type": "Organization",
-              "@id": "https://enterprise-thread.lovable.app/#organization",
+              "@id": `${SITE_URL}/#organization`,
               name: "Context Synthesizer",
-              url: "https://enterprise-thread.lovable.app/",
+              url: absoluteUrl("/"),
               description:
                 "Enterprise context pipeline that unifies Slack, Jira, Google Drive, and Notion into a single semantic layer for grounded LLM question answering.",
             },
             {
               "@type": "WebSite",
-              "@id": "https://enterprise-thread.lovable.app/#website",
-              url: "https://enterprise-thread.lovable.app/",
+              "@id": `${SITE_URL}/#website`,
+              url: absoluteUrl("/"),
               name: "Context Synthesizer",
-              publisher: { "@id": "https://enterprise-thread.lovable.app/#organization" },
+              publisher: { "@id": `${SITE_URL}/#organization` },
               description:
                 "Hybrid retrieval, parent-child chunking, entity graphs, and continuous evaluation across Slack, Jira, Drive, and Notion.",
             },
