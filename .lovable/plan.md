@@ -1,70 +1,80 @@
-# Context Synthesizer — Build Plan
+# Production hardening: env checks, Sentry, source maps, Vercel caching
 
-A single-page (one route) recruiter-facing site presenting an enterprise RAG/context pipeline as a serious infra product. Neutral palette + one teal accent, dark/light toggle, left-aligned dashboard content, no AI clichés.
+Four independent additions to make the deployed frontend observable and fast.
 
-## Design system (src/styles.css)
+## 1. Environment variable validation (build + runtime)
 
-- Palette: neutral stone/zinc backgrounds, near-black foreground, single teal accent (`oklch(0.68 0.12 190)` light, brighter in dark). Muted borders, subtle surface elevation via 1px borders + very soft shadows — no gradients on hero, no glows.
-- Typography: Inter (body) + JetBrains Mono (metrics/labels/code) via `<link>` in `__root.tsx`. Tight tracking on headings, uppercase mono micro-labels for section eyebrows and KPI captions.
-- Radius: small (6–8px) for enterprise feel. Sharp card hierarchy with 1px `--border`.
-- Tokens added: `--accent-teal`, `--accent-teal-foreground`, `--surface-1`, `--surface-2`, `--grid-line`, `--success`, `--warn`, `--danger`, plus mono font family token.
-- Dark mode via `.dark` class on `<html>`; toggle persists to `localStorage`.
+A single schema module lists every variable the app reads, whether it is required, its
+default, and a validation rule (e.g. `VITE_SITE_URL` must be an absolute `http(s)` URL
+with no trailing slash; `VITE_SENTRY_DSN` must look like a Sentry DSN when present).
 
-## Route structure
+- **Build time**: a small script runs before `vite build` and prints a clear, grouped
+  report — `OK`, `WARN` (missing optional / using default), `ERROR` (missing required or
+  malformed). Errors fail the build with an actionable message; warnings never fail it.
+  Today nothing is strictly required, so a clean build with zero env vars still succeeds.
+- **Runtime**: the same schema is checked once on app boot. In dev and preview it logs a
+  formatted console warning block; in production it logs a single compact warning and
+  reports a Sentry "misconfiguration" breadcrumb instead of spamming users' consoles.
 
-Single page at `/` with in-page section navigation (spec says single-page static app). Anchors: `#overview`, `#architecture`, `#dashboard`, `#query`, `#resume`. Sticky top nav with logo + section links + theme toggle + "View dashboard" CTA. Set proper `head()` on the index route (title, description, og:title/description, twitter card) and update `__root.tsx` to remove generic "Lovable App" defaults.
+## 2. Sentry error monitoring
 
-Single `<h1>` lives in the hero; every other section uses `<h2>`.
+- Client init in the app entry with `tracesSampleRate` low, `replaysOnErrorSampleRate`
+  modest, `environment` derived from Vercel env, and `release` set to the Vercel commit
+  SHA so stack traces map to the right source maps.
+- Wire the existing root `errorComponent` boundary and `lib/lovable-error-reporting.ts`
+  path to also forward to Sentry, so nothing that already reports to Lovable is lost.
+- Capture unhandled errors/rejections and `console.error` calls (via a console
+  integration) so non-crashing errors are still tracked.
+- Server-side: report SSR failures caught in `src/server.ts` / the `start.ts` error
+  middleware to Sentry as well, so 500s carry stack traces.
+- Sentry is fully optional: with no DSN configured the app runs untouched (no network
+  calls, no init), which keeps the Lovable preview and local dev clean.
+- Noise control: ignore known-benign hydration warnings and browser-extension errors,
+  and scrub request URLs of query strings.
 
-## Components (src/components/cs/)
+## 3. Source map upload from Vercel
 
-- `Logo.tsx` — custom inline SVG mark (interlocking angular brackets forming a "C" node graph, teal accent stroke).
-- `Nav.tsx` — sticky header, section links, `ThemeToggle`, CTA.
-- `ThemeToggle.tsx` — sun/moon, updates `documentElement.classList`.
-- `Hero.tsx` — left-aligned title + short subtitle + two CTAs (Dashboard, Architecture). No background gradient; thin grid line motif only.
-- `ConnectorCards.tsx` — Slack / Jira / Google Drive / Notion cards with inline brand SVGs, status, last-sync, doc counts. Asymmetric layout (not 3-col symmetric).
-- `WhyRagFails.tsx` — two-column compare: "Naive RAG" vs "Context Synthesizer" with concrete failure modes.
-- `Pipeline.tsx` — horizontal stepper (Ingest → Normalize → Chunk (parent/child) → Hybrid Retrieve → Rerank → Graph → Synthesize → Evaluate) with connecting arrows drawn in SVG.
-- `Dashboard.tsx` — composes the widgets below.
-- `KpiCard.tsx` — label (mono uppercase), big number, delta, sparkline.
-- `IngestionTable.tsx` — per-source rows: docs, freshness, error rate, last sync, status badge.
-- `RetrievalViz.tsx` — SVG showing query → BM25 + vector → fusion → rerank → top-k, with counts per stage.
-- `TracesPanel.tsx` — list of recent traces (query, latency, stages, scores, status).
-- `FailedQueries.tsx` — table of failed retrievals with root cause tag.
-- `EvalTrends.tsx` — line chart (Recharts) for precision / faithfulness / context recall over 14 days.
-- `SourceCoverage.tsx` — stacked bar or donut of citation source mix.
-- `EntityGraph.tsx` — small SVG force-graph preview (static positions) of entities (Project Atlas, mobile-auth, rate-limits, teams).
-- `StatusBadges.tsx` — system status pills.
-- `QueryDemo.tsx` — input + chip list of the 3 example queries; on select, animates in retrieved context cards from mixed sources, then synthesized answer with numbered citations and eval scores sidebar. All local state, no network.
-- `Architecture.tsx` — step-by-step diagram (cards + SVG arrows) covering the 8 layers listed in the spec.
-- `ResumeValue.tsx` — left-aligned prose + skills-demonstrated bullet grid.
-- `TechBadges.tsx` — small mono pill row for FastAPI, Postgres/pgvector, Qdrant, Ragas, Arize Phoenix, Slack/Jira/Drive/Notion APIs, Hybrid Search, Knowledge Graph.
-- `Footer.tsx` — minimal, left-aligned.
+- Vite is configured to emit source maps for the production build.
+- The Sentry Vite plugin uploads client and SSR maps during the Vercel build, tagged with
+  the same release, then deletes the `.map` files from the deployed output so they are
+  not publicly downloadable.
+- Upload is skipped automatically when the auth token or org/project vars are absent, so
+  builds keep working without Sentry credentials.
 
-## Demo data (src/data/)
+## 4. Vercel caching and header rules
 
-Typed TS modules with realistic-looking (clearly demo) fixtures matching the spec's schema: `source_type`, `source_id`, `parent_document_id`, `chunk_id`, `title`, `content_summary`, `authors`, `teams`, `entities`, `projects`, `created_at`, `updated_at`, `permission_tags`, `freshness_score`, `trust_score`, `retrieval_score`, `rerank_score`. Files: `connectors.ts`, `kpis.ts`, `trends.ts`, `traces.ts`, `failedQueries.ts`, `entities.ts`, `queries.ts` (3 example Q&A with retrieved chunks + citations + eval scores).
+Added to `vercel.json`:
 
-## Charts
+- `/_build/assets/*` and other hashed/immutable static output:
+  `Cache-Control: public, max-age=31536000, immutable`.
+- HTML / SSR document responses: `Cache-Control: no-cache` (revalidate every time) so
+  deploys are picked up immediately while still allowing 304s via ETag.
+- `sitemap.xml`, `robots.txt`, `llms.txt`: short shared cache with
+  `stale-while-revalidate`.
+- Favicon/images: long `max-age` with revalidation.
+- Security/perf headers alongside them: `X-Content-Type-Options: nosniff`,
+  `Referrer-Policy: strict-origin-when-cross-origin`, `X-Frame-Options: SAMEORIGIN`.
+- ETags are emitted by Vercel for static assets by default; the SSR document response
+  gets an explicit weak ETag so unchanged pages return 304.
 
-Use existing `recharts` (already in shadcn `chart.tsx`). Line charts for trends, tiny inline sparkline SVGs for KPI cards, stacked bar for source contribution. All themed via CSS variables.
+## Documentation
 
-## Motion
+`DEPLOYMENT.md`, `.env.example`, and the README get a table of all variables split into
+**build-only** (`SENTRY_AUTH_TOKEN`, `SENTRY_ORG`, `SENTRY_PROJECT` — secret, never
+exposed to the browser) and **public runtime** (`VITE_SITE_URL`, `VITE_SENTRY_DSN`),
+with exact Vercel dashboard steps and what happens when each is missing.
 
-Only subtle: fade/translate on section enter via `IntersectionObserver` + CSS transitions. No parallax, no glow, no bouncing.
+## Technical notes
 
-## Accessibility & responsiveness
-
-- Semantic `<header> <nav> <main> <section> <article> <table> <footer>`.
-- Focus rings via `--ring`, keyboard-operable tabs/toggles.
-- Grid + `min-w-0` / `shrink-0` for header rows (per responsive rules).
-- Mobile: nav collapses to a Sheet; dashboard tables become horizontally scrollable within a bordered container.
-
-## Files to create / modify
-
-- Modify: `src/routes/__root.tsx` (real head metadata, load fonts via `<link>`, add `<html class>` theme init script), `src/routes/index.tsx` (replace placeholder, compose sections, set head), `src/styles.css` (tokens, fonts registered in `@theme`).
-- Create: `src/components/cs/*` (components above), `src/data/*` (fixtures), `src/lib/theme.ts` (theme toggle helper), `src/lib/format.ts` (number/percent/date formatters).
-
-## Out of scope
-
-No backend, no auth, no real API calls, no Lovable Cloud. Everything runs from static fixtures.
+- New files: `src/lib/env.ts` (schema + validators, isomorphic), `scripts/check-env.mjs`
+  (build-time reporter), `src/lib/monitoring.ts` (Sentry init + guards).
+- `package.json`: `build` becomes `node scripts/check-env.mjs && vite build`; adds
+  `@sentry/react` and `@sentry/vite-plugin`.
+- `vite.config.ts`: `build.sourcemap: true` plus the Sentry plugin passed through
+  `defineConfig({ vite: { plugins: [...] } })` — the Lovable preset's own plugins stay
+  untouched.
+- `SENTRY_AUTH_TOKEN` must be added as a Vercel environment variable (Production +
+  Preview); I cannot set that for you, and the build degrades gracefully without it.
+- Verification: run the env checker with good/bad/missing values, run a Vercel-preset
+  production build to confirm maps are emitted and stripped, and confirm the app boots
+  with no DSN set.
