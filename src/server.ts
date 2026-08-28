@@ -76,10 +76,13 @@ export default {
     } catch (error) {
       console.error(error);
       void captureServerError(error, { boundary: "server_fetch" });
-      return await addDocumentValidators(request, new Response(renderErrorPage(), {
-        status: 500,
-        headers: { "content-type": "text/html; charset=utf-8" },
-      }));
+      return await addDocumentValidators(
+        request,
+        new Response(renderErrorPage(), {
+          status: 500,
+          headers: { "content-type": "text/html; charset=utf-8" },
+        }),
+      );
     }
   },
 };

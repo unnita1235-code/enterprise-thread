@@ -40,8 +40,7 @@ export async function captureServerError(
     timestamp: sentAt,
     platform: "javascript",
     level: "error",
-    environment:
-      readEnv("VITE_SENTRY_ENVIRONMENT") ?? readEnv("VERCEL_ENV") ?? "production",
+    environment: readEnv("VITE_SENTRY_ENVIRONMENT") ?? readEnv("VERCEL_ENV") ?? "production",
     release: readEnv("VERCEL_GIT_COMMIT_SHA") ?? readEnv("SENTRY_RELEASE"),
     server_name: undefined,
     tags: { runtime: "ssr" },

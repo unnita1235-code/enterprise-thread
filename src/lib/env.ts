@@ -10,10 +10,13 @@ const publicEnv = import.meta.env as unknown as Record<string, string | undefine
 
 export const envCheck = checkEnv(publicEnv, { includeBuildScope: false });
 
-export const SITE_URL = (publicEnv['VITE_SITE_URL']?.trim() || DEFAULT_SITE_URL).replace(/\/+$/, "");
-export const SENTRY_DSN = publicEnv['VITE_SENTRY_DSN']?.trim() || undefined;
+export const SITE_URL = (publicEnv["VITE_SITE_URL"]?.trim() || DEFAULT_SITE_URL).replace(
+  /\/+$/,
+  "",
+);
+export const SENTRY_DSN = publicEnv["VITE_SENTRY_DSN"]?.trim() || undefined;
 export const SENTRY_ENVIRONMENT =
-  publicEnv['VITE_SENTRY_ENVIRONMENT']?.trim() ||
+  publicEnv["VITE_SENTRY_ENVIRONMENT"]?.trim() ||
   (import.meta.env.PROD ? "production" : "development");
 
 let reported = false;
@@ -36,7 +39,9 @@ export function reportEnvStatus(onMisconfiguration?: (result: typeof envCheck) =
       [
         "",
         "┌─ Environment configuration ─────────────────────────────",
-        ...problems.map((p) => `│ ${p.level === "error" ? "ERROR" : "WARN "}  ${p.name}: ${p.message}`),
+        ...problems.map(
+          (p) => `│ ${p.level === "error" ? "ERROR" : "WARN "}  ${p.name}: ${p.message}`,
+        ),
         "└─────────────────────────────────────────────────────────",
         "",
       ].join("\n"),

@@ -3,8 +3,8 @@ import * as Sentry from "@sentry/react";
 import { SENTRY_DSN, SENTRY_ENVIRONMENT, reportEnvStatus } from "./env";
 
 const RELEASE =
-  (import.meta.env['VITE_VERCEL_GIT_COMMIT_SHA'] as string | undefined) ||
-  (import.meta.env['VITE_SENTRY_RELEASE'] as string | undefined) ||
+  (import.meta.env["VITE_VERCEL_GIT_COMMIT_SHA"] as string | undefined) ||
+  (import.meta.env["VITE_SENTRY_RELEASE"] as string | undefined) ||
   undefined;
 
 /** Benign noise we never want to page on. */
