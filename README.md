@@ -91,6 +91,23 @@ src/
 
 ## Running Locally
 
+### Optional environment configuration
+
+Copy `.env.example` to `.env` when you want to override the canonical URL or enable
+Sentry. `VITE_SITE_URL`, `VITE_SENTRY_DSN`, and `VITE_SENTRY_ENVIRONMENT` are public
+runtime settings. `SENTRY_AUTH_TOKEN`, `SENTRY_ORG`, and `SENTRY_PROJECT` are build-only
+settings for source map uploads and must remain secret. All are optional; defaults and
+Vercel setup instructions are in [`DEPLOYMENT.md`](./DEPLOYMENT.md).
+
+Every production build runs an environment check before Vite. It reports missing
+optional settings as warnings and stops only for malformed values that cannot be used.
+
+## Production observability
+
+When a Sentry DSN is configured, the app reports frontend crashes, unhandled promise
+rejections, and `console.error` events with release-aware stack traces. SSR failures are
+also reported. Sentry is completely inactive when `VITE_SENTRY_DSN` is unset.
+
 Clone the repository
 
 ```bash
