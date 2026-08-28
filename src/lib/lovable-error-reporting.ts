@@ -12,6 +12,8 @@ type LovableEvents = {
   ) => void;
 };
 
+import { captureError } from "./monitoring";
+
 declare global {
   interface Window {
     __lovableEvents?: LovableEvents;
@@ -33,4 +35,5 @@ export function reportLovableError(error: unknown, context: Record<string, unkno
       severity: "error",
     },
   );
+  captureError(error, context);
 }
