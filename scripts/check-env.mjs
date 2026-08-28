@@ -24,7 +24,12 @@ for (const scope of ["public", "build"]) {
   const rows = result.findings.filter((f) => byName.get(f.name)?.scope === scope);
   if (rows.length === 0) continue;
   console.log(
-    c("90", scope === "public" ? "public (VITE_*, inlined into the client bundle)" : "build-only (never exposed to the browser)"),
+    c(
+      "90",
+      scope === "public"
+        ? "public (VITE_*, inlined into the client bundle)"
+        : "build-only (never exposed to the browser)",
+    ),
   );
   for (const row of rows) {
     console.log(`${badge[row.level]} ${row.name.padEnd(24)} ${row.message}`);
@@ -33,9 +38,17 @@ for (const scope of ["public", "build"]) {
 }
 
 if (result.errors.length > 0) {
-  console.error(c("31", `Build aborted: ${result.errors.length} environment variable(s) are missing or misconfigured.`));
   console.error(
-    c("90", "Set them in your hosting provider (Vercel → Settings → Environment Variables) and redeploy."),
+    c(
+      "31",
+      `Build aborted: ${result.errors.length} environment variable(s) are missing or misconfigured.`,
+    ),
+  );
+  console.error(
+    c(
+      "90",
+      "Set them in your hosting provider (Vercel → Settings → Environment Variables) and redeploy.",
+    ),
   );
   console.error(c("90", "See DEPLOYMENT.md for the full reference."));
   process.exit(1);
@@ -43,7 +56,10 @@ if (result.errors.length > 0) {
 
 if (result.warnings.length > 0) {
   console.log(
-    c("33", `${result.warnings.length} warning(s) — build continues with defaults. See DEPLOYMENT.md.`),
+    c(
+      "33",
+      `${result.warnings.length} warning(s) — build continues with defaults. See DEPLOYMENT.md.`,
+    ),
   );
 } else {
   console.log(c("32", "All environment variables look good."));
