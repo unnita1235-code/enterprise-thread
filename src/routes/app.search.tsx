@@ -1,4 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AppPage } from "@/components/platform/AppPage";
-export const Route = createFileRoute("/app/search")({ component: SearchPage });
+export const Route = createFileRoute("/app/search")({ head: () => ({ meta: [{ title: "Search | Context Synthesizer" }, { name: "description", content: "Search playground for lexical and semantic retrieval." }, { property: "og:title", content: "Search | Context Synthesizer" }, { property: "og:description", content: "Search playground for lexical and semantic retrieval." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }] }), component: SearchPage });
 function SearchPage() { return <AppPage eyebrow="Workspace application" title="Search" area="Search" description="This workspace surface is reserved for connected, permission-aware data. The current build keeps it intentionally empty rather than showing invented production values." />; }
