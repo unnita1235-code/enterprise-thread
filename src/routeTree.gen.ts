@@ -10,23 +10,65 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as PublicPageRouteImport } from './routes/public-page'
-import { Route as PlatformRouteImport } from './routes/platform'
+import { Route as SecurityRouteImport } from './routes/security'
+import { Route as ProductRouteImport } from './routes/product'
+import { Route as IntegrationsRouteImport } from './routes/integrations'
+import { Route as EvaluationRouteImport } from './routes/evaluation'
+import { Route as DemoRouteImport } from './routes/demo'
+import { Route as ArchitectureRouteImport } from './routes/architecture'
+import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppTracesRouteImport } from './routes/app.traces'
+import { Route as AppTeamRouteImport } from './routes/app.team'
+import { Route as AppSourcesRouteImport } from './routes/app.sources'
+import { Route as AppSettingsRouteImport } from './routes/app.settings'
+import { Route as AppSearchRouteImport } from './routes/app.search'
+import { Route as AppOverviewRouteImport } from './routes/app.overview'
+import { Route as AppEvaluationsRouteImport } from './routes/app.evaluations'
+import { Route as AppEntitiesRouteImport } from './routes/app.entities'
+import { Route as AppDocumentsRouteImport } from './routes/app.documents'
+import { Route as AppAskRouteImport } from './routes/app.ask'
+import { Route as AppAnalyticsRouteImport } from './routes/app.analytics'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PublicPageRoute = PublicPageRouteImport.update({
-  id: '/public-page',
-  path: '/public-page',
+const SecurityRoute = SecurityRouteImport.update({
+  id: '/security',
+  path: '/security',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PlatformRoute = PlatformRouteImport.update({
-  id: '/platform',
-  path: '/platform',
+const ProductRoute = ProductRouteImport.update({
+  id: '/product',
+  path: '/product',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IntegrationsRoute = IntegrationsRouteImport.update({
+  id: '/integrations',
+  path: '/integrations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EvaluationRoute = EvaluationRouteImport.update({
+  id: '/evaluation',
+  path: '/evaluation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoRoute = DemoRouteImport.update({
+  id: '/demo',
+  path: '/demo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArchitectureRoute = ArchitectureRouteImport.update({
+  id: '/architecture',
+  path: '/architecture',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -34,38 +76,216 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTracesRoute = AppTracesRouteImport.update({
+  id: '/traces',
+  path: '/traces',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTeamRoute = AppTeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSourcesRoute = AppSourcesRouteImport.update({
+  id: '/sources',
+  path: '/sources',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSearchRoute = AppSearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppOverviewRoute = AppOverviewRouteImport.update({
+  id: '/overview',
+  path: '/overview',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppEvaluationsRoute = AppEvaluationsRouteImport.update({
+  id: '/evaluations',
+  path: '/evaluations',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppEntitiesRoute = AppEntitiesRouteImport.update({
+  id: '/entities',
+  path: '/entities',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDocumentsRoute = AppDocumentsRouteImport.update({
+  id: '/documents',
+  path: '/documents',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAskRoute = AppAskRouteImport.update({
+  id: '/ask',
+  path: '/ask',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/platform': typeof PlatformRoute
-  '/public-page': typeof PublicPageRoute
+  '/app': typeof AppRouteWithChildren
+  '/architecture': typeof ArchitectureRoute
+  '/demo': typeof DemoRoute
+  '/evaluation': typeof EvaluationRoute
+  '/integrations': typeof IntegrationsRoute
+  '/product': typeof ProductRoute
+  '/security': typeof SecurityRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/app/analytics': typeof AppAnalyticsRoute
+  '/app/ask': typeof AppAskRoute
+  '/app/documents': typeof AppDocumentsRoute
+  '/app/entities': typeof AppEntitiesRoute
+  '/app/evaluations': typeof AppEvaluationsRoute
+  '/app/overview': typeof AppOverviewRoute
+  '/app/search': typeof AppSearchRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/sources': typeof AppSourcesRoute
+  '/app/team': typeof AppTeamRoute
+  '/app/traces': typeof AppTracesRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/platform': typeof PlatformRoute
-  '/public-page': typeof PublicPageRoute
+  '/architecture': typeof ArchitectureRoute
+  '/demo': typeof DemoRoute
+  '/evaluation': typeof EvaluationRoute
+  '/integrations': typeof IntegrationsRoute
+  '/product': typeof ProductRoute
+  '/security': typeof SecurityRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/app/analytics': typeof AppAnalyticsRoute
+  '/app/ask': typeof AppAskRoute
+  '/app/documents': typeof AppDocumentsRoute
+  '/app/entities': typeof AppEntitiesRoute
+  '/app/evaluations': typeof AppEvaluationsRoute
+  '/app/overview': typeof AppOverviewRoute
+  '/app/search': typeof AppSearchRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/sources': typeof AppSourcesRoute
+  '/app/team': typeof AppTeamRoute
+  '/app/traces': typeof AppTracesRoute
+  '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/platform': typeof PlatformRoute
-  '/public-page': typeof PublicPageRoute
+  '/app': typeof AppRouteWithChildren
+  '/architecture': typeof ArchitectureRoute
+  '/demo': typeof DemoRoute
+  '/evaluation': typeof EvaluationRoute
+  '/integrations': typeof IntegrationsRoute
+  '/product': typeof ProductRoute
+  '/security': typeof SecurityRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/app/analytics': typeof AppAnalyticsRoute
+  '/app/ask': typeof AppAskRoute
+  '/app/documents': typeof AppDocumentsRoute
+  '/app/entities': typeof AppEntitiesRoute
+  '/app/evaluations': typeof AppEvaluationsRoute
+  '/app/overview': typeof AppOverviewRoute
+  '/app/search': typeof AppSearchRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/sources': typeof AppSourcesRoute
+  '/app/team': typeof AppTeamRoute
+  '/app/traces': typeof AppTracesRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/platform' | '/public-page' | '/sitemap.xml'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/architecture'
+    | '/demo'
+    | '/evaluation'
+    | '/integrations'
+    | '/product'
+    | '/security'
+    | '/sitemap.xml'
+    | '/app/analytics'
+    | '/app/ask'
+    | '/app/documents'
+    | '/app/entities'
+    | '/app/evaluations'
+    | '/app/overview'
+    | '/app/search'
+    | '/app/settings'
+    | '/app/sources'
+    | '/app/team'
+    | '/app/traces'
+    | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/platform' | '/public-page' | '/sitemap.xml'
-  id: '__root__' | '/' | '/platform' | '/public-page' | '/sitemap.xml'
+  to:
+    | '/'
+    | '/architecture'
+    | '/demo'
+    | '/evaluation'
+    | '/integrations'
+    | '/product'
+    | '/security'
+    | '/sitemap.xml'
+    | '/app/analytics'
+    | '/app/ask'
+    | '/app/documents'
+    | '/app/entities'
+    | '/app/evaluations'
+    | '/app/overview'
+    | '/app/search'
+    | '/app/settings'
+    | '/app/sources'
+    | '/app/team'
+    | '/app/traces'
+    | '/app'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/architecture'
+    | '/demo'
+    | '/evaluation'
+    | '/integrations'
+    | '/product'
+    | '/security'
+    | '/sitemap.xml'
+    | '/app/analytics'
+    | '/app/ask'
+    | '/app/documents'
+    | '/app/entities'
+    | '/app/evaluations'
+    | '/app/overview'
+    | '/app/search'
+    | '/app/settings'
+    | '/app/sources'
+    | '/app/team'
+    | '/app/traces'
+    | '/app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  PlatformRoute: typeof PlatformRoute
-  PublicPageRoute: typeof PublicPageRoute
+  AppRoute: typeof AppRouteWithChildren
+  ArchitectureRoute: typeof ArchitectureRoute
+  DemoRoute: typeof DemoRoute
+  EvaluationRoute: typeof EvaluationRoute
+  IntegrationsRoute: typeof IntegrationsRoute
+  ProductRoute: typeof ProductRoute
+  SecurityRoute: typeof SecurityRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
@@ -78,18 +298,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/public-page': {
-      id: '/public-page'
-      path: '/public-page'
-      fullPath: '/public-page'
-      preLoaderRoute: typeof PublicPageRouteImport
+    '/security': {
+      id: '/security'
+      path: '/security'
+      fullPath: '/security'
+      preLoaderRoute: typeof SecurityRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/platform': {
-      id: '/platform'
-      path: '/platform'
-      fullPath: '/platform'
-      preLoaderRoute: typeof PlatformRouteImport
+    '/product': {
+      id: '/product'
+      path: '/product'
+      fullPath: '/product'
+      preLoaderRoute: typeof ProductRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/integrations': {
+      id: '/integrations'
+      path: '/integrations'
+      fullPath: '/integrations'
+      preLoaderRoute: typeof IntegrationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/evaluation': {
+      id: '/evaluation'
+      path: '/evaluation'
+      fullPath: '/evaluation'
+      preLoaderRoute: typeof EvaluationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo': {
+      id: '/demo'
+      path: '/demo'
+      fullPath: '/demo'
+      preLoaderRoute: typeof DemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/architecture': {
+      id: '/architecture'
+      path: '/architecture'
+      fullPath: '/architecture'
+      preLoaderRoute: typeof ArchitectureRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -99,13 +354,134 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/traces': {
+      id: '/app/traces'
+      path: '/traces'
+      fullPath: '/app/traces'
+      preLoaderRoute: typeof AppTracesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/team': {
+      id: '/app/team'
+      path: '/team'
+      fullPath: '/app/team'
+      preLoaderRoute: typeof AppTeamRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/sources': {
+      id: '/app/sources'
+      path: '/sources'
+      fullPath: '/app/sources'
+      preLoaderRoute: typeof AppSourcesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/settings': {
+      id: '/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/search': {
+      id: '/app/search'
+      path: '/search'
+      fullPath: '/app/search'
+      preLoaderRoute: typeof AppSearchRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/overview': {
+      id: '/app/overview'
+      path: '/overview'
+      fullPath: '/app/overview'
+      preLoaderRoute: typeof AppOverviewRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/evaluations': {
+      id: '/app/evaluations'
+      path: '/evaluations'
+      fullPath: '/app/evaluations'
+      preLoaderRoute: typeof AppEvaluationsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/entities': {
+      id: '/app/entities'
+      path: '/entities'
+      fullPath: '/app/entities'
+      preLoaderRoute: typeof AppEntitiesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/documents': {
+      id: '/app/documents'
+      path: '/documents'
+      fullPath: '/app/documents'
+      preLoaderRoute: typeof AppDocumentsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/ask': {
+      id: '/app/ask'
+      path: '/ask'
+      fullPath: '/app/ask'
+      preLoaderRoute: typeof AppAskRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/analytics': {
+      id: '/app/analytics'
+      path: '/analytics'
+      fullPath: '/app/analytics'
+      preLoaderRoute: typeof AppAnalyticsRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppAnalyticsRoute: typeof AppAnalyticsRoute
+  AppAskRoute: typeof AppAskRoute
+  AppDocumentsRoute: typeof AppDocumentsRoute
+  AppEntitiesRoute: typeof AppEntitiesRoute
+  AppEvaluationsRoute: typeof AppEvaluationsRoute
+  AppOverviewRoute: typeof AppOverviewRoute
+  AppSearchRoute: typeof AppSearchRoute
+  AppSettingsRoute: typeof AppSettingsRoute
+  AppSourcesRoute: typeof AppSourcesRoute
+  AppTeamRoute: typeof AppTeamRoute
+  AppTracesRoute: typeof AppTracesRoute
+  AppIndexRoute: typeof AppIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppAnalyticsRoute: AppAnalyticsRoute,
+  AppAskRoute: AppAskRoute,
+  AppDocumentsRoute: AppDocumentsRoute,
+  AppEntitiesRoute: AppEntitiesRoute,
+  AppEvaluationsRoute: AppEvaluationsRoute,
+  AppOverviewRoute: AppOverviewRoute,
+  AppSearchRoute: AppSearchRoute,
+  AppSettingsRoute: AppSettingsRoute,
+  AppSourcesRoute: AppSourcesRoute,
+  AppTeamRoute: AppTeamRoute,
+  AppTracesRoute: AppTracesRoute,
+  AppIndexRoute: AppIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  PlatformRoute: PlatformRoute,
-  PublicPageRoute: PublicPageRoute,
+  AppRoute: AppRouteWithChildren,
+  ArchitectureRoute: ArchitectureRoute,
+  DemoRoute: DemoRoute,
+  EvaluationRoute: EvaluationRoute,
+  IntegrationsRoute: IntegrationsRoute,
+  ProductRoute: ProductRoute,
+  SecurityRoute: SecurityRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
