@@ -1,5 +1,57 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PublicPage, SectionHeading } from "@/components/platform/PublicPage";
 import { absoluteUrl } from "@/lib/site";
-export const Route = createFileRoute("/architecture")({ head: () => ({ meta: [{ title: "Architecture | Context Synthesizer" }, { name: "description", content: "Explore the layered architecture behind a permission-aware enterprise context intelligence platform." }, { property: "og:title", content: "Architecture | Context Synthesizer" }, { property: "og:description", content: "Explore the layered architecture behind a permission-aware enterprise context intelligence platform." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }], links: [{ rel: "canonical", href: absoluteUrl("/architecture") }] }), component: ArchitecturePage });
-function ArchitecturePage() { return <PublicPage eyebrow="System architecture" title="Retrieval is a system, not a prompt." description="The platform separates source normalization, indexing, hybrid retrieval, policy enforcement, generation, citations, and evaluation so every boundary can be tested."><SectionHeading eyebrow="Boundaries" title="A layered context intelligence architecture"><span className="font-mono text-xs text-teal">designed for replacement</span></SectionHeading><div className="mt-8 grid gap-px border border-border bg-border md:grid-cols-5">{["Connectors", "Normalize", "Index", "Retrieve", "Ground"].map((item, index) => <div key={item} className="bg-card p-5"><span className="font-mono text-xs text-teal">0{index + 1}</span><h3 className="mt-8 font-medium">{item}</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{["Provider credentials and ACLs stay server-side.", "Canonical records preserve source identity.", "Chunks, vectors, and lexical indexes remain tenant-scoped.", "Hybrid ranking filters permissions before context assembly.", "Citations and traces make answers inspectable."][index]}</p></div>)}</div></PublicPage>; }
+export const Route = createFileRoute("/architecture")({
+  head: () => ({
+    meta: [
+      { title: "Architecture | Context Synthesizer" },
+      {
+        name: "description",
+        content:
+          "Explore the layered architecture behind a permission-aware enterprise context intelligence platform.",
+      },
+      { property: "og:title", content: "Architecture | Context Synthesizer" },
+      {
+        property: "og:description",
+        content:
+          "Explore the layered architecture behind a permission-aware enterprise context intelligence platform.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: absoluteUrl("/architecture") }],
+  }),
+  component: ArchitecturePage,
+});
+function ArchitecturePage() {
+  return (
+    <PublicPage
+      eyebrow="System architecture"
+      title="Retrieval is a system, not a prompt."
+      description="The platform separates source normalization, indexing, hybrid retrieval, policy enforcement, generation, citations, and evaluation so every boundary can be tested."
+    >
+      <SectionHeading eyebrow="Boundaries" title="A layered context intelligence architecture">
+        <span className="font-mono text-xs text-teal">designed for replacement</span>
+      </SectionHeading>
+      <div className="mt-8 grid gap-px border border-border bg-border md:grid-cols-5">
+        {["Connectors", "Normalize", "Index", "Retrieve", "Ground"].map((item, index) => (
+          <div key={item} className="bg-card p-5">
+            <span className="font-mono text-xs text-teal">0{index + 1}</span>
+            <h3 className="mt-8 font-medium">{item}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              {
+                [
+                  "Provider credentials and ACLs stay server-side.",
+                  "Canonical records preserve source identity.",
+                  "Chunks, vectors, and lexical indexes remain tenant-scoped.",
+                  "Hybrid ranking filters permissions before context assembly.",
+                  "Citations and traces make answers inspectable.",
+                ][index]
+              }
+            </p>
+          </div>
+        ))}
+      </div>
+    </PublicPage>
+  );
+}

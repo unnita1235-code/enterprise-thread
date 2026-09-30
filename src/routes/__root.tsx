@@ -46,7 +46,6 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     captureError(error, { boundary: "tanstack_root_error_component" });
   }, [error]);
 
-
   return (
     <div className="flex min-h-dvh items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
@@ -92,16 +91,37 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "A unified semantic layer over Slack, Jira, Google Drive, and Notion. Hybrid retrieval, parent-child chunking, entity graphs, and continuous evaluation.",
       },
       { name: "author", content: "Context Synthesizer" },
-      { property: "og:title", content: "Context Synthesizer — Enterprise context pipeline for LLMs" },
-      { property: "og:description", content: "Hybrid retrieval, entity graphs, and continuous evaluation across Slack, Jira, Drive, and Notion." },
+      {
+        property: "og:title",
+        content: "Context Synthesizer — Enterprise context pipeline for LLMs",
+      },
+      {
+        property: "og:description",
+        content:
+          "Hybrid retrieval, entity graphs, and continuous evaluation across Slack, Jira, Drive, and Notion.",
+      },
       { property: "og:type", content: "website" },
       { property: "og:url", content: absoluteUrl("/") },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Context Synthesizer — Enterprise context pipeline for LLMs" },
-      { name: "twitter:description", content: "A unified semantic layer over Slack, Jira, Google Drive, and Notion. Hybrid retrieval, parent-child chunking, entity graphs, and continuous evaluation." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f762e6b7-24ac-414f-9224-4dd3f1ea5f15/id-preview-b1e875bd--a97273df-3633-49dc-8fab-d5d67aeff33c.lovable.app-1783185394747.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f762e6b7-24ac-414f-9224-4dd3f1ea5f15/id-preview-b1e875bd--a97273df-3633-49dc-8fab-d5d67aeff33c.lovable.app-1783185394747.png" },
-
+      {
+        name: "twitter:title",
+        content: "Context Synthesizer — Enterprise context pipeline for LLMs",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "A unified semantic layer over Slack, Jira, Google Drive, and Notion. Hybrid retrieval, parent-child chunking, entity graphs, and continuous evaluation.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f762e6b7-24ac-414f-9224-4dd3f1ea5f15/id-preview-b1e875bd--a97273df-3633-49dc-8fab-d5d67aeff33c.lovable.app-1783185394747.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f762e6b7-24ac-414f-9224-4dd3f1ea5f15/id-preview-b1e875bd--a97273df-3633-49dc-8fab-d5d67aeff33c.lovable.app-1783185394747.png",
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -168,7 +188,6 @@ function RootComponent() {
   useEffect(() => {
     initMonitoring();
   }, []);
-
 
   return (
     <QueryClientProvider client={queryClient}>

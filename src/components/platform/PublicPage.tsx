@@ -51,8 +51,12 @@ export function PublicPage({ eyebrow, title, description, children }: PublicPage
         <section className="border-b border-border">
           <div className="mx-auto max-w-7xl px-5 pb-14 pt-16 md:px-8 md:pb-20 md:pt-24">
             <p className="eyebrow">{eyebrow}</p>
-            <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-tight md:text-6xl">{title}</h1>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">{description}</p>
+            <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-tight md:text-6xl">
+              {title}
+            </h1>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+              {description}
+            </p>
           </div>
         </section>
         <div className="mx-auto max-w-7xl px-5 py-12 md:px-8 md:py-16">{children}</div>
@@ -61,7 +65,10 @@ export function PublicPage({ eyebrow, title, description, children }: PublicPage
       <footer className="border-t border-border bg-surface-1">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-6 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between md:px-8">
           <span>Context Synthesizer · enterprise context intelligence</span>
-          <Link to="/demo" className="inline-flex items-center gap-2 text-foreground hover:text-teal">
+          <Link
+            to="/demo"
+            className="inline-flex items-center gap-2 text-foreground hover:text-teal"
+          >
             Inspect the demonstration <ExternalLink size={14} aria-hidden="true" />
           </Link>
         </div>
@@ -70,7 +77,15 @@ export function PublicPage({ eyebrow, title, description, children }: PublicPage
   );
 }
 
-export function SectionHeading({ eyebrow, title, children }: { eyebrow: string; title: string; children?: React.ReactNode }) {
+export function SectionHeading({
+  eyebrow,
+  title,
+  children,
+}: {
+  eyebrow: string;
+  title: string;
+  children?: React.ReactNode;
+}) {
   return (
     <div className="flex flex-col justify-between gap-4 border-b border-border pb-5 md:flex-row md:items-end">
       <div>
@@ -82,7 +97,11 @@ export function SectionHeading({ eyebrow, title, children }: { eyebrow: string; 
   );
 }
 
-export function InfoGrid({ items }: { items: Array<{ label: string; value: string; detail: string }> }) {
+export function InfoGrid({
+  items,
+}: {
+  items: Array<{ label: string; value: string; detail: string }>;
+}) {
   return (
     <div className="mt-8 grid gap-px overflow-hidden border border-border bg-border md:grid-cols-3">
       {items.map((item) => (

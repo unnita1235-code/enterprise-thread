@@ -1,4 +1,25 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AppPage } from "@/components/platform/AppPage";
-export const Route = createFileRoute("/app/settings")({ head: () => ({ meta: [{ title: "Settings | Context Synthesizer" }, { name: "description", content: "Workspace and platform configuration." }, { property: "og:title", content: "Settings | Context Synthesizer" }, { property: "og:description", content: "Workspace and platform configuration." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }] }), component: SettingsPage });
-function SettingsPage() { return <AppPage eyebrow="Workspace application" title="Settings" area="Settings" description="This workspace surface is reserved for connected, permission-aware data. The current build keeps it intentionally empty rather than showing invented production values." />; }
+export const Route = createFileRoute("/app/settings")({
+  head: () => ({
+    meta: [
+      { title: "Settings | Context Synthesizer" },
+      { name: "description", content: "Workspace and platform configuration." },
+      { property: "og:title", content: "Settings | Context Synthesizer" },
+      { property: "og:description", content: "Workspace and platform configuration." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+    ],
+  }),
+  component: SettingsPage,
+});
+function SettingsPage() {
+  return (
+    <AppPage
+      eyebrow="Workspace application"
+      title="Settings"
+      area="Settings"
+      description="This workspace surface is reserved for connected, permission-aware data. The current build keeps it intentionally empty rather than showing invented production values."
+    />
+  );
+}
