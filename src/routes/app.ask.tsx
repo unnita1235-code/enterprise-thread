@@ -1,0 +1,31 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { AppPage } from "@/components/platform/AppPage";
+export const Route = createFileRoute("/app/ask")({
+  head: () => ({
+    meta: [
+      { title: "Ask | Context Synthesizer" },
+      {
+        name: "description",
+        content: "Grounded question workflow for connected enterprise context.",
+      },
+      { property: "og:title", content: "Ask | Context Synthesizer" },
+      {
+        property: "og:description",
+        content: "Grounded question workflow for connected enterprise context.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+    ],
+  }),
+  component: AskPage,
+});
+function AskPage() {
+  return (
+    <AppPage
+      eyebrow="Workspace application"
+      title="Ask"
+      area="Ask"
+      description="This workspace surface is reserved for connected, permission-aware data. The current build keeps it intentionally empty rather than showing invented production values."
+    />
+  );
+}

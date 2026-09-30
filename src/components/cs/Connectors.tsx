@@ -22,7 +22,12 @@ export function SourceIcon({ id, size = 18 }: { id: SourceType; size?: number })
     case "drive":
       return (
         <svg {...common} aria-hidden="true">
-          <path d="M8 3 L16 3 L22 14 L18 21 L6 21 L2 14 Z" fill="none" stroke="currentColor" strokeWidth="1.5" />
+          <path
+            d="M8 3 L16 3 L22 14 L18 21 L6 21 L2 14 Z"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          />
           <path d="M8 3 L2 14 L6 21" fill="#0F9D58" opacity="0.9" />
           <path d="M16 3 L22 14 L18 21" fill="#FBBC05" opacity="0.9" />
           <path d="M6 21 L18 21 L22 14 L2 14 Z" fill="#4285F4" opacity="0.9" />
@@ -31,8 +36,22 @@ export function SourceIcon({ id, size = 18 }: { id: SourceType; size?: number })
     case "notion":
       return (
         <svg {...common} aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" strokeWidth="1.5" />
-          <path d="M8 7 L8 17 M8 7 L16 17 M16 7 L16 17" stroke="currentColor" strokeWidth="1.5" fill="none" />
+          <rect
+            x="3"
+            y="3"
+            width="18"
+            height="18"
+            rx="2"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M8 7 L8 17 M8 7 L16 17 M16 7 L16 17"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            fill="none"
+          />
         </svg>
       );
   }
@@ -50,14 +69,17 @@ export function ConnectorCards() {
       <div className="mx-auto max-w-7xl px-5 py-16 md:px-8">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <p className="eyebrow">Ingestion surface</p>
-            <h2 id="connectors-title" className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">
+            <p className="eyebrow">Ingestion surface · demonstration data</p>
+            <h2
+              id="connectors-title"
+              className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl"
+            >
               Four systems, one canonical schema
             </h2>
           </div>
           <p className="hidden max-w-sm text-sm text-muted-foreground md:block">
-            Every record — a Slack thread, Jira comment, Drive doc, Notion block — normalizes
-            into the same 15-field envelope with permission tags preserved.
+            Every record — a Slack thread, Jira comment, Drive doc, Notion block — normalizes into
+            the same 15-field envelope with permission tags preserved.
           </p>
         </div>
 
@@ -74,9 +96,7 @@ export function ConnectorCards() {
                   <SourceIcon id={c.id} />
                   <h3 className="truncate font-medium">{c.name}</h3>
                 </div>
-                <span className={`font-mono text-xs ${statusStyles[c.status]}`}>
-                  ● {c.status}
-                </span>
+                <span className={`font-mono text-xs ${statusStyles[c.status]}`}>● {c.status}</span>
               </header>
               <dl className="mt-4 grid grid-cols-2 gap-3 text-sm">
                 <div>

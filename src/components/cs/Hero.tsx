@@ -2,11 +2,7 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 export function Hero() {
   return (
-    <section
-      id="overview"
-      className="relative border-b border-border"
-      aria-labelledby="hero-title"
-    >
+    <section id="overview" className="relative border-b border-border" aria-labelledby="hero-title">
       <div className="pointer-events-none absolute inset-0 grid-bg opacity-40 [mask-image:radial-gradient(ellipse_at_top,black,transparent_70%)]" />
       <div className="relative mx-auto max-w-7xl px-5 pb-20 pt-16 md:px-8 md:pt-24">
         <p className="eyebrow">v0.4 · demo dataset</p>
@@ -18,16 +14,16 @@ export function Hero() {
           <span className="text-teal">defensible.</span>
         </h1>
         <p className="mt-6 max-w-2xl text-base text-muted-foreground md:text-lg">
-          Context Synthesizer unifies Slack, Jira, Google Drive, and Notion into a single
-          semantic layer — with hybrid retrieval, parent-child chunking, entity graphs, and
-          continuous evaluation of faithfulness, recall, and groundedness.
+          Context Synthesizer unifies Slack, Jira, Google Drive, and Notion into a single semantic
+          layer — with hybrid retrieval, parent-child chunking, entity graphs, and continuous
+          evaluation of faithfulness, recall, and groundedness.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <a
             href="#dashboard"
             className="inline-flex items-center gap-2 rounded-md bg-teal px-4 py-2.5 text-sm font-medium text-teal-foreground transition-opacity hover:opacity-90"
           >
-            Open live dashboard <ArrowRight size={16} />
+            Inspect demo dashboard <ArrowRight size={16} />
           </a>
           <a
             href="#architecture"

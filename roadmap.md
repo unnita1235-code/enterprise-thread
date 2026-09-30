@@ -1,6 +1,6 @@
 # Context Synthesizer delivery roadmap
 
-- [ ] Milestone 1: application foundation, route map, reusable shell, and explicit demo-mode states
+- [x] Milestone 1: application foundation, route map, reusable shell, and explicit demo-mode states
 - [ ] Milestone 2: Lovable Cloud identity, workspaces, roles, permissions, tenancy, and audit events
 - [ ] Milestone 3: connector abstractions, source detail, encrypted credentials, and sync jobs
 - [ ] Milestone 4: persisted documents, chunks, embeddings, hybrid retrieval, ACL filtering, and ranking

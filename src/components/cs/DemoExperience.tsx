@@ -18,9 +18,13 @@ export function DemoExperience() {
         <TopBar />
         <main className="min-w-0 flex-1">
           <Hero />
-          <section id="connectors"><ConnectorCards /></section>
+          <section id="connectors">
+            <ConnectorCards />
+          </section>
           <WhyRag />
-          <section id="pipeline"><Pipeline /></section>
+          <section id="pipeline">
+            <Pipeline />
+          </section>
           <Dashboard />
           <QueryDemo />
           <Architecture />

@@ -26,14 +26,14 @@ This repository is intended to showcase system design, architecture, and fronten
 
 ## Features
 
-* Enterprise RAG architecture visualization
-* Connector dashboard for Slack, Jira, Google Drive, and Notion
-* Interactive retrieval pipeline
-* Enterprise monitoring dashboard
-* Retrieval evaluation metrics
-* Semantic entity graph visualization
-* Query workflow demonstration
-* Responsive modern UI built with React and TypeScript
+- Enterprise RAG architecture visualization
+- Connector dashboard for Slack, Jira, Google Drive, and Notion
+- Interactive retrieval pipeline
+- Enterprise monitoring dashboard
+- Retrieval evaluation metrics
+- Semantic entity graph visualization
+- Query workflow demonstration
+- Responsive modern UI built with React and TypeScript
 
 ---
 
@@ -41,25 +41,25 @@ This repository is intended to showcase system design, architecture, and fronten
 
 ### Frontend
 
-* React 19
-* TypeScript
-* TanStack Start
-* TanStack Router
-* Vite
-* Tailwind CSS v4
-* Radix UI
-* Recharts
-* Lucide React
+- React 19
+- TypeScript
+- TanStack Start
+- TanStack Router
+- Vite
+- Tailwind CSS v4
+- Radix UI
+- Recharts
+- Lucide React
 
 ### Architecture Demonstrated
 
-* Retrieval-Augmented Generation (RAG)
-* Hybrid Search (BM25 + Vector Search)
-* Parent-Child Chunking
-* Cross-Encoder Reranking
-* Semantic Entity Graphs
-* Retrieval Evaluation
-* Enterprise Observability
+- Retrieval-Augmented Generation (RAG)
+- Hybrid Search (BM25 + Vector Search)
+- Parent-Child Chunking
+- Cross-Encoder Reranking
+- Semantic Entity Graphs
+- Retrieval Evaluation
+- Enterprise Observability
 
 These architectural concepts are demonstrated through the interface and documentation. They are **not yet implemented as live backend services** in this repository.
 
@@ -148,23 +148,34 @@ bun run dev
 
 ## Current Status
 
-This project is currently a **frontend architecture demonstration**.
+The project now has a production-oriented frontend foundation with public product pages and a clearly separated workspace shell. The application routes are intentionally explicit about what is not connected yet; no authentication, OAuth, database, sync, embeddings, retrieval engine, or LLM behavior is simulated.
+
+### Implemented frontend foundation
+
+- Public routes: `/product`, `/architecture`, `/integrations`, `/security`, `/evaluation`, and `/demo`
+- Workspace route family: `/app/overview`, `/app/ask`, `/app/sources`, `/app/documents`, `/app/search`, `/app/entities`, `/app/evaluations`, `/app/traces`, `/app/analytics`, `/app/team`, and `/app/settings`
+- Reusable responsive workspace shell with command palette, mobile navigation, route-aware navigation, and explicit demo/not-connected states
+- Route-specific metadata and canonical URLs
+
+### Demo only
+
+The existing dashboard, connector cards, retrieval pipeline, query walkthrough, graph, evaluation charts, and metrics remain static portfolio data under `/` and `/demo`. They are not production measurements or live integrations.
 
 The interface, dashboards, retrieval pipeline, and enterprise metrics are powered by demonstration data to illustrate how a production enterprise RAG platform could operate.
 
 The following are **not currently implemented**:
 
-* Live Slack API integration
-* Live Jira API integration
-* Live Google Drive synchronization
-* Live Notion synchronization
-* Vector database
-* Embedding generation
-* Backend retrieval engine
-* Authentication
-* Permission-aware retrieval
-* Production LLM inference
-* Automated evaluation pipeline
+- Live Slack API integration
+- Live Jira API integration
+- Live Google Drive synchronization
+- Live Notion synchronization
+- Vector database
+- Embedding generation
+- Backend retrieval engine
+- Authentication
+- Permission-aware retrieval
+- Production LLM inference
+- Automated evaluation pipeline
 
 ---
 
@@ -172,17 +183,17 @@ The following are **not currently implemented**:
 
 Future work includes:
 
-* Live connector synchronization
-* Incremental document indexing
-* Hybrid retrieval implementation
-* Vector database integration
-* Streaming responses
-* Citation generation
-* Role-based access control
-* Enterprise authentication
-* Backend API services
-* Evaluation automation
-* Production telemetry
+- Live connector synchronization
+- Incremental document indexing
+- Hybrid retrieval implementation
+- Vector database integration
+- Streaming responses
+- Citation generation
+- Role-based access control
+- Enterprise authentication
+- Backend API services
+- Evaluation automation
+- Production telemetry
 
 ---
 
@@ -228,8 +239,8 @@ MIT License
 
 This project requires **no secrets**; the production build works with zero environment variables set.
 
-| Variable | Required | Default | Purpose |
-| --- | --- | --- | --- |
-| `VITE_SITE_URL` | No | `https://enterprise-thread.lovable.app` | Canonical origin for `canonical`, `og:url`, JSON-LD, and `/sitemap.xml` |
+| Variable        | Required | Default                                 | Purpose                                                                 |
+| --------------- | -------- | --------------------------------------- | ----------------------------------------------------------------------- |
+| `VITE_SITE_URL` | No       | `https://enterprise-thread.lovable.app` | Canonical origin for `canonical`, `og:url`, JSON-LD, and `/sitemap.xml` |
 
 See [`.env.example`](./.env.example) and [`DEPLOYMENT.md`](./DEPLOYMENT.md) for Vercel setup steps.

@@ -33,7 +33,13 @@ function Sparkline({ data }: { data: number[] }) {
     .join(" ");
   return (
     <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="h-10 w-full">
-      <polyline points={pts} fill="none" stroke="var(--teal)" strokeWidth="2.5" vectorEffect="non-scaling-stroke" />
+      <polyline
+        points={pts}
+        fill="none"
+        stroke="var(--teal)"
+        strokeWidth="2.5"
+        vectorEffect="non-scaling-stroke"
+      />
     </svg>
   );
 }
@@ -124,7 +130,7 @@ export function Dashboard() {
       <div className="mx-auto max-w-7xl px-5 py-20 md:px-8">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="eyebrow">Live dashboard · demo data</p>
+            <p className="eyebrow">Demonstration dashboard · static dataset</p>
             <h2 id="dash-title" className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">
               Retrieval, evaluation, and ingestion health
             </h2>
@@ -159,21 +165,60 @@ export function Dashboard() {
                 <h3 className="mt-1 text-base font-medium">Precision · faithfulness · recall</h3>
               </div>
               <div className="flex gap-3 font-mono text-[11px] text-muted-foreground">
-                <span className="flex items-center gap-1.5"><i className="h-2 w-2 rounded-sm bg-chart-1" />precision</span>
-                <span className="flex items-center gap-1.5"><i className="h-2 w-2 rounded-sm bg-chart-3" />faithfulness</span>
-                <span className="flex items-center gap-1.5"><i className="h-2 w-2 rounded-sm bg-chart-2" />recall</span>
+                <span className="flex items-center gap-1.5">
+                  <i className="h-2 w-2 rounded-sm bg-chart-1" />
+                  precision
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <i className="h-2 w-2 rounded-sm bg-chart-3" />
+                  faithfulness
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <i className="h-2 w-2 rounded-sm bg-chart-2" />
+                  recall
+                </span>
               </div>
             </div>
             <div className="mt-4 h-56">
               <ResponsiveContainer>
                 <LineChart data={evalTrends} margin={{ top: 4, right: 8, left: -20, bottom: 0 }}>
                   <CartesianGrid stroke="var(--grid-line)" vertical={false} />
-                  <XAxis dataKey="day" stroke="var(--muted-foreground)" fontSize={11} tickLine={false} axisLine={false} />
-                  <YAxis domain={[0.8, 1]} stroke="var(--muted-foreground)" fontSize={11} tickLine={false} axisLine={false} />
+                  <XAxis
+                    dataKey="day"
+                    stroke="var(--muted-foreground)"
+                    fontSize={11}
+                    tickLine={false}
+                    axisLine={false}
+                  />
+                  <YAxis
+                    domain={[0.8, 1]}
+                    stroke="var(--muted-foreground)"
+                    fontSize={11}
+                    tickLine={false}
+                    axisLine={false}
+                  />
                   <Tooltip {...chartTooltipStyle} />
-                  <Line type="monotone" dataKey="precision" stroke="var(--chart-1)" strokeWidth={2} dot={false} />
-                  <Line type="monotone" dataKey="faithfulness" stroke="var(--chart-3)" strokeWidth={2} dot={false} />
-                  <Line type="monotone" dataKey="recall" stroke="var(--chart-2)" strokeWidth={2} dot={false} />
+                  <Line
+                    type="monotone"
+                    dataKey="precision"
+                    stroke="var(--chart-1)"
+                    strokeWidth={2}
+                    dot={false}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="faithfulness"
+                    stroke="var(--chart-3)"
+                    strokeWidth={2}
+                    dot={false}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="recall"
+                    stroke="var(--chart-2)"
+                    strokeWidth={2}
+                    dot={false}
+                  />
                 </LineChart>
               </ResponsiveContainer>
             </div>
@@ -184,10 +229,24 @@ export function Dashboard() {
             <h3 className="mt-1 text-base font-medium">Citations by system · 7 days</h3>
             <div className="mt-4 h-56">
               <ResponsiveContainer>
-                <BarChart data={sourceContribution} margin={{ top: 4, right: 8, left: -20, bottom: 0 }}>
+                <BarChart
+                  data={sourceContribution}
+                  margin={{ top: 4, right: 8, left: -20, bottom: 0 }}
+                >
                   <CartesianGrid stroke="var(--grid-line)" vertical={false} />
-                  <XAxis dataKey="name" stroke="var(--muted-foreground)" fontSize={11} tickLine={false} axisLine={false} />
-                  <YAxis stroke="var(--muted-foreground)" fontSize={11} tickLine={false} axisLine={false} />
+                  <XAxis
+                    dataKey="name"
+                    stroke="var(--muted-foreground)"
+                    fontSize={11}
+                    tickLine={false}
+                    axisLine={false}
+                  />
+                  <YAxis
+                    stroke="var(--muted-foreground)"
+                    fontSize={11}
+                    tickLine={false}
+                    axisLine={false}
+                  />
                   <Tooltip {...chartTooltipStyle} />
                   <Bar dataKey="slack" stackId="a" fill="var(--chart-1)" />
                   <Bar dataKey="jira" stackId="a" fill="var(--chart-2)" />
@@ -210,9 +269,13 @@ export function Dashboard() {
               <table className="w-full min-w-[560px] text-sm">
                 <thead>
                   <tr className="border-b border-border text-left">
-                    {["Source", "Docs", "Freshness", "Error rate", "Last sync", "Status"].map((h) => (
-                      <th key={h} className="eyebrow px-5 py-2.5 font-normal">{h}</th>
-                    ))}
+                    {["Source", "Docs", "Freshness", "Error rate", "Last sync", "Status"].map(
+                      (h) => (
+                        <th key={h} className="eyebrow px-5 py-2.5 font-normal">
+                          {h}
+                        </th>
+                      ),
+                    )}
                   </tr>
                 </thead>
                 <tbody>
@@ -229,7 +292,9 @@ export function Dashboard() {
                       <td className="px-5 py-3 font-mono">{(r.errorRate * 100).toFixed(2)}%</td>
                       <td className="px-5 py-3 font-mono text-muted-foreground">{r.lastSync}</td>
                       <td className="px-5 py-3">
-                        <span className={`font-mono text-xs ${statusBadgeStyle[r.status]}`}>● {r.status}</span>
+                        <span className={`font-mono text-xs ${statusBadgeStyle[r.status]}`}>
+                          ● {r.status}
+                        </span>
                       </td>
                     </tr>
                   ))}
@@ -255,9 +320,33 @@ export function Dashboard() {
                 { x: 275, y: 90, w: 40, l: "rerank", n: "8" },
               ].map((b, i) => (
                 <g key={i}>
-                  <rect x={b.x} y={b.y - 14} width={b.w} height={28} rx="4" fill="var(--surface-2)" stroke="var(--border)" />
-                  <text x={b.x + b.w / 2} y={b.y - 1} textAnchor="middle" style={{ fontSize: 10, fontFamily: "var(--font-mono)" }} fill="var(--muted-foreground)">{b.l}</text>
-                  <text x={b.x + b.w / 2} y={b.y + 10} textAnchor="middle" style={{ fontSize: 10, fontFamily: "var(--font-mono)" }} fill="var(--foreground)">{b.n}</text>
+                  <rect
+                    x={b.x}
+                    y={b.y - 14}
+                    width={b.w}
+                    height={28}
+                    rx="4"
+                    fill="var(--surface-2)"
+                    stroke="var(--border)"
+                  />
+                  <text
+                    x={b.x + b.w / 2}
+                    y={b.y - 1}
+                    textAnchor="middle"
+                    style={{ fontSize: 10, fontFamily: "var(--font-mono)" }}
+                    fill="var(--muted-foreground)"
+                  >
+                    {b.l}
+                  </text>
+                  <text
+                    x={b.x + b.w / 2}
+                    y={b.y + 10}
+                    textAnchor="middle"
+                    style={{ fontSize: 10, fontFamily: "var(--font-mono)" }}
+                    fill="var(--foreground)"
+                  >
+                    {b.n}
+                  </text>
                 </g>
               ))}
               {[
@@ -267,7 +356,16 @@ export function Dashboard() {
                 [170, 150, 200, 90],
                 [260, 90, 275, 90],
               ].map(([x1, y1, x2, y2], i) => (
-                <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="var(--muted-foreground)" strokeWidth="1" markerEnd="url(#arr)" />
+                <line
+                  key={i}
+                  x1={x1}
+                  y1={y1}
+                  x2={x2}
+                  y2={y2}
+                  stroke="var(--muted-foreground)"
+                  strokeWidth="1"
+                  markerEnd="url(#arr)"
+                />
               ))}
             </svg>
             <p className="mt-2 font-mono text-[11px] text-muted-foreground">
@@ -288,7 +386,10 @@ export function Dashboard() {
             </header>
             <ul className="divide-y divide-border">
               {traces.map((t) => (
-                <li key={t.id} className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-3">
+                <li
+                  key={t.id}
+                  className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-3"
+                >
                   <div className="min-w-0">
                     <div className="flex items-center gap-2">
                       <span className="font-mono text-[11px] text-muted-foreground">{t.id}</span>
@@ -305,7 +406,9 @@ export function Dashboard() {
                   </div>
                   <div className="text-right font-mono text-xs">
                     <div className="text-foreground">{t.latency}ms</div>
-                    <div className="text-muted-foreground">f{t.faithfulness.toFixed(2)} · {t.citations} cites</div>
+                    <div className="text-muted-foreground">
+                      f{t.faithfulness.toFixed(2)} · {t.citations} cites
+                    </div>
                   </div>
                 </li>
               ))}
@@ -342,7 +445,9 @@ export function Dashboard() {
                 <p className="eyebrow">Semantic entity graph</p>
                 <h3 className="mt-1 text-base font-medium">Cross-system topology</h3>
               </div>
-              <span className="font-mono text-[11px] text-muted-foreground">42 nodes · 118 edges</span>
+              <span className="font-mono text-[11px] text-muted-foreground">
+                42 nodes · 118 edges
+              </span>
             </div>
             <EntityGraph />
           </article>
@@ -353,7 +458,10 @@ export function Dashboard() {
             </header>
             <ul className="divide-y divide-border">
               {entities.map((e) => (
-                <li key={e.id} className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-5 py-2.5">
+                <li
+                  key={e.id}
+                  className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-5 py-2.5"
+                >
                   <div className="min-w-0">
                     <p className="truncate text-sm text-foreground">{e.label}</p>
                     <p className="font-mono text-[11px] text-muted-foreground">{e.type}</p>
@@ -384,10 +492,27 @@ export function Dashboard() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid stroke="var(--grid-line)" vertical={false} />
-                <XAxis dataKey="day" stroke="var(--muted-foreground)" fontSize={11} tickLine={false} axisLine={false} />
-                <YAxis stroke="var(--muted-foreground)" fontSize={11} tickLine={false} axisLine={false} />
+                <XAxis
+                  dataKey="day"
+                  stroke="var(--muted-foreground)"
+                  fontSize={11}
+                  tickLine={false}
+                  axisLine={false}
+                />
+                <YAxis
+                  stroke="var(--muted-foreground)"
+                  fontSize={11}
+                  tickLine={false}
+                  axisLine={false}
+                />
                 <Tooltip {...chartTooltipStyle} />
-                <Area type="monotone" dataKey="s" stroke="var(--teal)" strokeWidth={2} fill="url(#fg)" />
+                <Area
+                  type="monotone"
+                  dataKey="s"
+                  stroke="var(--teal)"
+                  strokeWidth={2}
+                  fill="url(#fg)"
+                />
               </AreaChart>
             </ResponsiveContainer>
           </div>
