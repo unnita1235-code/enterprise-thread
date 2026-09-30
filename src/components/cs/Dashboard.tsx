@@ -124,7 +124,7 @@ export function Dashboard() {
       <div className="mx-auto max-w-7xl px-5 py-20 md:px-8">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="eyebrow">Live dashboard · demo data</p>
+            <p className="eyebrow">Demonstration dashboard · static dataset</p>
             <h2 id="dash-title" className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">
               Retrieval, evaluation, and ingestion health
             </h2>

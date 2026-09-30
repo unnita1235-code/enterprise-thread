@@ -27,7 +27,7 @@ export function Hero() {
             href="#dashboard"
             className="inline-flex items-center gap-2 rounded-md bg-teal px-4 py-2.5 text-sm font-medium text-teal-foreground transition-opacity hover:opacity-90"
           >
-            Open live dashboard <ArrowRight size={16} />
+            Inspect demo dashboard <ArrowRight size={16} />
           </a>
           <a
             href="#architecture"

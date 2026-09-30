@@ -1,0 +1,9 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { PublicPage, SectionHeading, InfoGrid } from "@/components/platform/PublicPage";
+import { absoluteUrl } from "@/lib/site";
+
+export const Route = createFileRoute("/product")({
+  head: () => ({ meta: [{ title: "Product | Context Synthesizer" }, { name: "description", content: "A transparent product surface for enterprise context intelligence, grounded retrieval, and measurable AI workflows." }, { property: "og:title", content: "Product | Context Synthesizer" }, { property: "og:description", content: "A transparent product surface for enterprise context intelligence, grounded retrieval, and measurable AI workflows." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }], links: [{ rel: "canonical", href: absoluteUrl("/product") }] }),
+  component: ProductPage,
+});
+function ProductPage() { return <PublicPage eyebrow="Product surface" title="A control plane for trustworthy enterprise context." description="Context Synthesizer is designed to make the path from disconnected systems to grounded answers inspectable, permission-aware, and measurable."><SectionHeading eyebrow="What is real today" title="A transparent product surface"><span className="font-mono text-xs text-warn">demonstration layer only</span></SectionHeading><InfoGrid items={[{ label: "Ask", value: "Workflow mapped", detail: "The answer experience is scoped, but no production model or retrieval service is connected." }, { label: "Sources", value: "Provider-neutral", detail: "Slack, Jira, Drive, and Notion are represented as source types without fake OAuth." }, { label: "Quality", value: "Evaluation-ready", detail: "Trace and evaluation surfaces are designed for measured outputs, not invented live scores." }]} /></PublicPage>; }
