@@ -15,6 +15,7 @@ import { Route as ArchitectureRouteImport } from './routes/architecture'
 import { Route as DemoRouteImport } from './routes/demo'
 import { Route as EvaluationRouteImport } from './routes/evaluation'
 import { Route as IntegrationsRouteImport } from './routes/integrations'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as ProductRouteImport } from './routes/product'
 import { Route as SecurityRouteImport } from './routes/security'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -59,6 +60,11 @@ const EvaluationRoute = EvaluationRouteImport.update({
 const IntegrationsRoute = IntegrationsRouteImport.update({
   id: '/integrations',
   path: '/integrations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductRoute = ProductRouteImport.update({
@@ -144,6 +150,7 @@ export interface FileRoutesByFullPath {
   '/demo': typeof DemoRoute
   '/evaluation': typeof EvaluationRoute
   '/integrations': typeof IntegrationsRoute
+  '/login': typeof LoginRoute
   '/product': typeof ProductRoute
   '/security': typeof SecurityRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -166,6 +173,7 @@ export interface FileRoutesByTo {
   '/demo': typeof DemoRoute
   '/evaluation': typeof EvaluationRoute
   '/integrations': typeof IntegrationsRoute
+  '/login': typeof LoginRoute
   '/product': typeof ProductRoute
   '/security': typeof SecurityRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -190,6 +198,7 @@ export interface FileRoutesById {
   '/demo': typeof DemoRoute
   '/evaluation': typeof EvaluationRoute
   '/integrations': typeof IntegrationsRoute
+  '/login': typeof LoginRoute
   '/product': typeof ProductRoute
   '/security': typeof SecurityRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -215,6 +224,7 @@ export interface FileRouteTypes {
     | '/demo'
     | '/evaluation'
     | '/integrations'
+    | '/login'
     | '/product'
     | '/security'
     | '/sitemap.xml'
@@ -237,6 +247,7 @@ export interface FileRouteTypes {
     | '/demo'
     | '/evaluation'
     | '/integrations'
+    | '/login'
     | '/product'
     | '/security'
     | '/sitemap.xml'
@@ -260,6 +271,7 @@ export interface FileRouteTypes {
     | '/demo'
     | '/evaluation'
     | '/integrations'
+    | '/login'
     | '/product'
     | '/security'
     | '/sitemap.xml'
@@ -284,6 +296,7 @@ export interface RootRouteChildren {
   DemoRoute: typeof DemoRoute
   EvaluationRoute: typeof EvaluationRoute
   IntegrationsRoute: typeof IntegrationsRoute
+  LoginRoute: typeof LoginRoute
   ProductRoute: typeof ProductRoute
   SecurityRoute: typeof SecurityRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -331,6 +344,13 @@ declare module '@tanstack/react-router' {
       path: '/integrations'
       fullPath: '/integrations'
       preLoaderRoute: typeof IntegrationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/product': {
@@ -480,6 +500,7 @@ const rootRouteChildren: RootRouteChildren = {
   DemoRoute: DemoRoute,
   EvaluationRoute: EvaluationRoute,
   IntegrationsRoute: IntegrationsRoute,
+  LoginRoute: LoginRoute,
   ProductRoute: ProductRoute,
   SecurityRoute: SecurityRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
